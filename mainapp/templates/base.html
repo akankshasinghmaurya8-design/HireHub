@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASM-HireHub</title>
+  <link rel="stylesheet" href="{% static 'css/style.css'  %}">
+  <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}"><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <!---navbar start-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+          <div class="container-fluid">
+            <a class="navbar-brand text-dark fw-bolder" href="/index/"> <i class="fa-solid fa-briefcase me-2"></i>HireHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5  px-5 text-light">
+                <li class="nav-item  ms-5 px-2">
+                  <a class="nav-link active text-dark fw-bold" aria-current="page" href="/index/">Home</a>
+                </li>
+                <li class="nav-item px-2">
+                  <a class="nav-link active  text-dark  fw-bold " href="/about/">About</a>
+                </li>
+                <li class="nav-item px-2">
+                  <a class="nav-link active text-dark   fw-bold" href="/contact/">Contact</a>
+                </li>
+                <li class="nav-item px-2">
+                  <a class="nav-link active text-dark fw-bold " href="/jobs/">Jobs</a>
+                </li>
+
+              </ul>
+              <form class="d-flex">
+                <button class="btn btn-outline-dark me-3"><a href="/login/"
+                    class="text-decoration-none text-dark fw-semibold">Login</a></button>
+                <button class="btn btn-dark me-5 "> <a href="/Register/"
+                    class=" text-decoration-none text-light fw-semibold">Register</a></button>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+    <!--navbarend-->
+    <!---banner start-->
+    <div class="row  align-items-center bg">
+
+      <div class="col-sm-5 mt-5 ms-5">
+        <h1 class="dream mb-2">Shape Your Future With HireHub</h1>
+        <p class="banp text-secondary">Search opportunities posted by HireHub and apply with your jobseeker profile.</p>
+
+        <p class="banp">
+          <button class="btn btn-primary"><a href="/Register/" class="text-decoration-none text-light">Create
+              Account</a></button>
+          <button class="btn btn-outline-light"><a href="/about/" class="text-decoration-none text-secondary">Learn
+              More</a></button>
+        </p>
+      </div>
+
+      <div class="col-sm-6 mt-5 mb-3 d-flex justify-content-end">
+        <img src="{% static 'img/girl.png' %}" class="img-fluid banner-img" style="max-height:400px;">
+      </div>
+      <!---------banner end-->>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+
+
+
+
+    <!--FOOTER start-->
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-dark text-white">
+      <!-- Section: Social media -->
+      <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class=" fw-bolder mb-4">
+                <i class="fas fa-gem me-3 "></i>HireHub
+              </h6>
+              <p class="text-align-justify">
+                HireHub bridges the gap between job seekers and employers by providing a simple, fast, and reliable
+                platform for career growth and recruitment.
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                JOBSEEKERS
+              </h6>
+              <p>
+                <a href="#!" class="text-reset">Browse Jobs</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Saved jobs</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Carrer Tips</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Laravel</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Useful links
+              </h6>
+              <p>
+                <a href="#!" class="text-reset">Open Jobs</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Applications</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Support</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Help</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+              <p>
+                <i class="fas fa-envelope me-3"></i>
+                support@example.com
+              </p>
+              <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+              <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+       <hr class="bg-light">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">HireHub@Design & Developed by ASM</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <!--footter end-->
+  </div>
+  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+
+</html>

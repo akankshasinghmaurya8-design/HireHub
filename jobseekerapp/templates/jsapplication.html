@@ -1,0 +1,119 @@
+{% extends 'jobseekerbase.html' %}
+{% load static %}
+
+{% block jobseeker %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">📄 My Application Board</h3>
+        <span class="badge bg-primary fs-6">
+            Total: {{ app|length }}
+        </span>
+    </div>
+
+    <!-- Table Card -->
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Job Title</th>
+                            <th>Salary</th>
+                            <th>Deadline</th>
+                            <th>Applied At</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for a in app %}
+                        <tr>
+
+                            <td class="fw-bold">{{ forloop.counter }}</td>
+
+                            <td>
+                                <div class="fw-semibold">
+                                    {{ a.job.title }}
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="text-success fw-semibold">
+                                    &#8377;{{ a.job.salary }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-warning text-dark">
+                                    {{ a.job.deadline }}
+                                </span>
+                            </td>
+
+                            <td class="text-muted">
+                                {{ a.applied_at|date:"d M Y, h:i A" }}
+                            </td>
+
+                            <td>
+
+                                {% if a.status == 'pending' %}
+                                    <span class="badge rounded-pill bg-secondary px-3 py-2">
+                                        Pending
+                                    </span>
+
+                                {% elif a.status == 'shortlisted' %}
+                                    <span class="badge rounded-pill bg-info text-dark px-3 py-2">
+                                        Shortlisted
+                                    </span>
+
+                                {% elif a.status == 'rejected' %}
+                                    <span class="badge rounded-pill bg-danger px-3 py-2">
+                                        Rejected
+                                    </span>
+
+                                {% elif a.status == 'selected' %}
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        Selected
+                                    </span>
+
+                                {% else %}
+                                    <span class="badge rounded-pill bg-dark px-3 py-2">
+                                        Unknown
+                                    </span>
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="6" class="text-center py-5 text-muted">
+                                <h5>No Applications Found</h5>
+                                <p class="mb-0">You have not applied for any job yet.</p>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

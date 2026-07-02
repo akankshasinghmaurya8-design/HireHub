@@ -1,0 +1,371 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+
+{% block employer %}
+
+<div class="container-fluid py-4">
+
+    <!-- Welcome Header -->
+    <div class="row mb-4">
+        <div class="col-lg-12">
+
+            <div class="card bg-primary text-white shadow border-0 rounded-4 p-4">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <div>
+                        <h2 class="fw-bold mb-1">
+                            Welcome, {{ emp.first_name }} 👋
+                        </h2>
+
+                        <p class="mb-0">
+                            {{ emp.designation }}
+                            {% if emp.company %}
+                            | {{ emp.company.company_name }}
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <a href="{% url 'empprofile' %}" class="btn btn-light mt-3 mt-lg-0">
+                        View Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">Total Jobs</h6>
+
+                    <h2 class="text-primary fw-bold">
+                        {{ total_jobs }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">Active Jobs</h6>
+
+                    <h2 class="text-success fw-bold">
+                        {{ active_jobs }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">Applications</h6>
+
+                    <h2 class="text-warning fw-bold">
+                        {{ total_applications }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">Shortlisted</h6>
+
+                    <h2 class="text-info fw-bold">
+                        {{ shortlisted }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Main Section -->
+
+    <div class="row g-4">
+
+        <!-- Company Profile -->
+
+        <div class="col-lg-4">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <div class="card-body text-center">
+
+                    {% if emp.company.logo %}
+                    <img src="{{ emp.company.logo.url }}" class="rounded-circle shadow mb-3" width="130" height="130">
+                    {% else %}
+                    <img src="{% static 'images/company.png' %}" class="rounded-circle shadow mb-3" width="130"
+                        height="130">
+                    {% endif %}
+
+                    <h4 class="fw-bold">
+                        {{ emp.company.company_name }}
+                    </h4>
+
+                    <p class="text-muted">
+                        {{ emp.company.industry }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <strong>Employer :</strong><br>
+                        {{ emp.first_name }} {{ emp.last_name }}
+                    </p>
+
+                    <p>
+                        <strong>Email :</strong><br>
+                        {{ emp.email }}
+                    </p>
+
+                    <p>
+                        <strong>Phone :</strong><br>
+                        {{ emp.contact_no }}
+                    </p>
+
+                    <p>
+                        <strong>Location :</strong><br>
+                        {{ emp.company.location }}
+                    </p>
+
+                    <p>
+                        <strong>Website :</strong><br>
+
+                        {% if emp.company.website %}
+                        <a href="{{ emp.company.website }}" target="_blank">
+                            Visit Website
+                        </a>
+                        {% else %}
+                        Not Available
+                        {% endif %}
+
+                    </p>
+                    <div class="text-center">
+                        <a href="{% url 'empedit' %}" class="btn btn-primary w-50">
+
+                            Edit Profile
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Section -->
+
+        <div class="col-lg-8">
+
+            <!-- Recent Jobs -->
+            <div class="card shadow border-0 rounded-5 mb-4">
+
+                <div class="card-header bg-dark text-white">
+                    Recent Job Posts
+                </div>
+
+                <div class="card-body p-0">
+
+                    <table class="table table-hover mb-0 align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Type</th>
+                                <th>Salary</th>
+                                <th>Applications</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for job in recent_jobs %}
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    {{ job.title }}
+                                </td>
+
+                                <td>
+                                    {{ job.job_type }}
+                                </td>
+
+                                <td>
+                                    ₹{{ job.salary }}
+                                </td>
+
+                                <td>
+                                    {{ job.applications.count }}
+                                </td>
+
+                                <td>
+                                    {% if job.is_active %}
+                                    <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Closed</span>
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted p-3">
+                                    No jobs posted yet
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Recent Applications -->
+            <div class="card shadow border-0 rounded-5 mb-4">
+
+                <div class="card-header bg-primary text-white">
+                    Recent Applications
+                </div>
+
+                <div class="card-body p-0">
+
+                    <table class="table table-hover mb-0 align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Job</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for a in recent_applications %}
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    {{ a.jobseeker.first_name }} {{ a.jobseeker.last_name }}
+                                </td>
+
+                                <td>
+                                    {{ a.job.title }}
+                                </td>
+
+                                <td>
+                                    {{ a.applied_at|date:"d M Y" }}
+                                </td>
+
+                                <td>
+                                    {% if a.status == 'pending' %}
+                                    <span class="badge bg-secondary">Pending</span>
+
+                                    {% elif a.status == 'shortlisted' %}
+                                    <span class="badge bg-info text-dark">Shortlisted</span>
+
+                                    {% elif a.status == 'rejected' %}
+                                    <span class="badge bg-danger">Rejected</span>
+
+                                    {% else %}
+                                    <span class="badge bg-success">Selected</span>
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted p-3">
+                                    No applications yet
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card shadow border-0 rounded-5">
+
+                <div class="card-header bg-success text-white">
+                    Quick Actions
+                </div>
+
+                <div class="card-body d-flex flex-wrap gap-2">
+
+                    <a href="{% url 'postjob' %}" class="btn btn-primary">
+                        + Post Job
+                    </a>
+
+                    <a href="{% url 'postedjob' %}" class="btn btn-warning">
+                        Manage Jobs
+                    </a>
+
+                    {% if j.is_active %}
+                    <a href="{% url 'Viewapplicants' jobid=j.id %}" class="btn btn-success">
+                        View Applications
+                    </a>
+                        {% endif %}
+
+                        <a href="{% url 'empedit' %}" class="btn btn-secondary">
+                            Company Profile
+                        </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

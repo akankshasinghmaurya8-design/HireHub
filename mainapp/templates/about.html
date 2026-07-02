@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container py-5">
+
+  <!-- HEADER -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">About HireHub</h1>
+    <p class="text-muted">
+      Connecting talent with opportunity in a smarter way
+    </p>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="row align-items-center g-4 mb-5">
+
+    <!-- TEXT -->
+    <div class="col-md-6">
+
+      <h2 class="fw-bold mb-3">Who We Are</h2>
+
+      <p class="text-muted">
+        HireHub is a modern job portal designed to connect job seekers with trusted companies.
+        Our platform makes hiring simple, fast, and efficient for everyone.
+      </p>
+
+      <p class="text-muted">
+        We focus on creating a seamless experience where candidates can explore jobs and apply instantly,
+        while employers can find the right talent easily.
+      </p>
+
+      <a href="{% url 'jobs' %}" class="btn btn-primary mt-2 px-4">
+        Explore Jobs
+      </a>
+
+    </div>
+
+    <!-- IMAGE -->
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/about.png' %}"
+           class="img-fluid"
+           style="max-height:350px;">
+    </div>
+
+  </div>
+
+  <!-- FEATURES -->
+  <div class="row g-4 text-center">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 p-4 h-100">
+        <h5>🚀 Fast Hiring</h5>
+        <p class="text-muted">
+          Apply and get responses quickly from companies.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 p-4 h-100">
+        <h5>🏢 Verified Companies</h5>
+        <p class="text-muted">
+          Only trusted employers are listed on HireHub.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 p-4 h-100">
+        <h5>📱 Easy Access</h5>
+        <p class="text-muted">
+          Simple and mobile-friendly job searching experience.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CALL TO ACTION -->
+  <div class="bg-primary text-white text-center p-5 mt-5 rounded">
+
+    <h3 class="fw-bold">Start Your Career Today</h3>
+
+    <p class="mb-3">
+      Join thousands of job seekers already using HireHub
+    </p>
+
+    <a href="{% url 'Register' %}" class="btn btn-light px-4">
+      Create Account
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

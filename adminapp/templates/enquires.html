@@ -1,0 +1,52 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{% block admin %}
+
+<h1>Enquiries</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact No.</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Enquiry Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for e in Enquires %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.name }}</td>
+            <td>{{ e.email }}</td>
+            <td>{{ e.contactno }}</td>
+            <td>{{ e.subject }}</td>
+            <td>{{ e.message }}</td>
+            <td>{{ e.enqdate }}</td>
+            <td class="d-flex justify-content-space-arround">
+                
+                <a href="{% url 'delenq' enqid=e.id  %}">
+                    <button class="btn btn-danger btn-sm "
+                        onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8" class="text-center">No Enquiries Found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container py-5">
+
+  <!-- TITLE -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Contact Us</h2>
+    <p class="text-muted">We’re here to help you anytime</p>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- LEFT INFO SECTION -->
+    <div class="col-md-5">
+
+      <div class="card border-0 shadow-sm p-4 h-100">
+
+        <h4 class="fw-bold mb-3">Get in Touch</h4>
+
+        <p class="text-muted">
+          Have questions about jobs, applications or HireHub? Feel free to reach out.
+        </p>
+
+        <hr>
+
+        <p><b>📧 Email:</b><br> support@hirehub.com</p>
+        <p><b>📞 Phone:</b><br> +91 9876543210</p>
+        <p><b>🏢 Office:</b><br> Lucknow, Uttar Pradesh</p>
+        <p><b>⏰ Working Hours:</b><br> Mon - Fri (9AM - 6PM)</p>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="col-md-7">
+
+      <div class="card border-0 shadow-sm p-4">
+
+        <h4 class="fw-bold mb-3">Send Message</h4>
+
+        <!-- MESSAGES -->
+        {% if messages %}
+          {% for m in messages %}
+            <div class="alert alert-success alert-dismissible fade show">
+              {{ m }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'contact' %}">
+          {% csrf_token %}
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Your name">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Contact No</label>
+              <input type="text" name="contactno" class="form-control" placeholder="Mobile number">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Subject</label>
+              <input type="text" name="subject" class="form-control" placeholder="Subject">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea name="message" rows="4" class="form-control" placeholder="Write your message..."></textarea>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary w-100">
+                Send Message
+              </button>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

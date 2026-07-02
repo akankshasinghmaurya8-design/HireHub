@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container py-5">
+
+  <!-- SECTION TITLE -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Why HireHub Works Better</h2>
+    <p class="text-muted">A smarter way to connect job seekers and employers</p>
+  </div>
+
+  <div class="row g-4 align-items-stretch">
+
+    <!-- LEFT CARD -->
+    <div class="col-md-7">
+
+      <div class="card border-0 shadow-lg h-100 text-white bg-primary">
+
+        <div class="card-body p-4">
+
+          <h2 class="fw-bold mb-4">Why HireHub Works Better</h2>
+
+          <p class="mb-3">
+            HireHub is designed to simplify hiring and job searching with a fast, clean, and user-friendly experience.
+          </p>
+
+          <ul class="list-unstyled">
+
+            <li class="mb-2">✔ Easy job search and filtering</li>
+            <li class="mb-2">✔ One-click job applications</li>
+            <li class="mb-2">✔ Verified company listings</li>
+            <li class="mb-2">✔ Secure and fast platform</li>
+
+          </ul>
+
+          <a href="{% url 'jobs' %}" class="btn btn-light mt-3 px-4">
+            Explore Jobs
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="col-md-5">
+
+      <div class="card border-0 shadow-sm h-100">
+
+        <div class="card-body p-4">
+
+          <h5 class="fw-bold mb-3">Key Highlights</h5>
+
+          <div class="mb-3">
+            <h6>🚀 Fast Hiring</h6>
+            <p class="text-muted mb-0">Apply and get responses quickly.</p>
+          </div>
+
+          <hr>
+
+          <div class="mb-3">
+            <h6>🏢 Top Companies</h6>
+            <p class="text-muted mb-0">Only verified employers.</p>
+          </div>
+
+          <hr>
+
+          <div class="mb-3">
+            <h6>📱 Mobile Friendly</h6>
+            <p class="text-muted mb-0">Use anywhere, anytime.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

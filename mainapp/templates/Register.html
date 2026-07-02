@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container py-5">
+
+  <!-- TITLE -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">Create Your Account</h2>
+    <p class="text-muted">Join HireHub and start your career journey</p>
+  </div>
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+      <div class="card border-0 shadow-lg rounded-4 p-4">
+
+        <!-- MESSAGES -->
+        {% if messages %}
+          {% for m in messages %}
+            <div class="alert alert-warning alert-dismissible fade show">
+              {{ m }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="row g-3">
+
+            <!-- USER TYPE -->
+            <div class="col-12">
+              <label class="form-label fw-semibold">User Type</label>
+              <select name="usertype" class="form-select" required>
+                <option value="" disabled selected>Select User Type</option>
+                <option value="jobseeker">Jobseeker</option>
+                <option value="employer">Employer</option>
+              </select>
+            </div>
+
+            <!-- NAME -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">First Name</label>
+              <input type="text" name="first_name" class="form-control" placeholder="First name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Last Name</label>
+              <input type="text" name="last_name" class="form-control" placeholder="Last name">
+            </div>
+
+            <!-- EMAIL -->
+            <div class="col-12">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter email" required>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="col-12">
+              <label class="form-label fw-semibold">Contact Number</label>
+              <input type="text" name="contact_no" class="form-control" placeholder="Mobile number" required>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Password</label>
+              <input type="password" name="pwd" class="form-control" placeholder="Password" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Confirm Password</label>
+              <input type="password" name="confirm_pwd" class="form-control" placeholder="Confirm password" required>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-dark w-100 py-2">
+                Create Account
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+        <!-- LOGIN LINK -->
+        <div class="text-center mt-3">
+          <small class="text-muted">
+            Already have an account?
+            <a href="{% url 'login' %}">Login here</a>
+          </small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

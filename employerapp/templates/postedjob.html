@@ -1,0 +1,132 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+
+{% block employer %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">📋 Posted Jobs</h3>
+        <a href="{% url 'postjob' %}" class="btn btn-primary">
+            + Post New Job
+        </a>
+    </div>
+
+    <!-- Jobs Card -->
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Job Details</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Salary</th>
+                            <th>Location</th>
+                            <th>Vacancy</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for j in jobs %}
+                        <tr>
+
+                            <td class="fw-bold text-muted">
+                                {{ forloop.counter }}
+                            </td>
+
+                            <!-- Job Title -->
+                            <td>
+                                <div class="fw-bold">{{ j.title }}</div>
+                                <small class="text-muted">
+                                    Posted: {{ j.created_at|date:"d M Y" }}
+                                </small>
+                            </td>
+
+                            <!-- Category -->
+                            <td>
+                                <span class="badge bg-secondary">
+                                    {{ j.category }}
+                                </span>
+                            </td>
+
+                            <!-- Type -->
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    {{ j.job_type }}
+                                </span>
+                            </td>
+
+                            <!-- Salary -->
+                            <td>
+                                ₹ {{ j.salary }}
+                            </td>
+
+                            <!-- Location -->
+                            <td>
+                                <i class="bi bi-geo-alt text-danger"></i>
+                                {{ j.location }}
+                            </td>
+
+                            <!-- Vacancy -->
+                            <td>
+                                {{ j.vacancy }}
+                            </td>
+
+                            <!-- Deadline -->
+                            <td>
+                                {{ j.deadline|date:"d M Y" }}
+                            </td>
+
+                            <!-- Status -->
+                            <td>
+                                {% if j.is_active %}
+                                    <span class="badge bg-success">Active</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Inactive</span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Actions -->
+                            <td>
+
+                                <a href="{% url 'empedit'   %}" class="btn btn-sm btn-outline-primary mb-1">
+                                    Edit
+                                </a>
+
+                                <a href="{% url 'deljob' jobid=j.id %}"><button class="btn btn-danger btn-sm" onclick="return confirm('Aur you sure?')">Delete</button></a>
+
+                                <a href="{% url 'Viewapplicants' jobid=j.id %}"
+                                   class="btn btn-sm btn-outline-info">
+                                    Applications
+                                </a>
+
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

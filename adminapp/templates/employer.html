@@ -1,0 +1,74 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{%  block admin %}
+
+<h1>Employer</h1>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact No.</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Skills</th>
+            <th>Picture</th>
+            <th>Designation</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for e in emp %}
+        <tr>
+
+            <td>{{ forloop.counter }}</td>
+
+            <td>{{ e.first_name }} {{ e.last_name }}</td>
+
+            <td>{{ e.email }}</td>
+
+            <td>{{ e.contact_no }}</td>
+
+            <td>{{ e.dob|date:"d M Y" }}</td>
+
+            <td>{{ e.gender }}</td>
+
+            <td>
+                {% for skill in e.skills.all %}
+                    <span class="badge bg-primary">
+                        {{ skill.skill_name }}
+                    </span>
+                {% empty %}
+                    No Skills
+                {% endfor %}
+            </td>
+
+            <td>
+                {% if e.picture %}
+                    <img src="{{ e.picture.url }}"
+                         class="rounded-circle"
+                         width="80"
+                         height="80"
+                         style="object-fit:cover;">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+
+            <td>
+                {{e.designation}}
+            </td>
+
+        </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{%  endblock %}

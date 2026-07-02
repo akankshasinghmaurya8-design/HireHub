@@ -1,0 +1,368 @@
+{% extends 'jobseekerbase.html' %}
+{% load static %}
+
+{% block jobseeker %}
+
+<div class="container py-4">
+    <!-- Header -->
+    <div class="card shadow-lg border-5 rounded-5 overflow-hidden">
+
+        <div class="bg-primary p-5 text-center">
+
+            {% if js.picture %}
+            <img src="{{ js.picture.url }}"
+                 class="rounded-circle border border-5 border-white shadow profile-img"
+                 width="170"
+                 height="170"
+                 style="object-fit:cover;">
+            {% else %}
+            <img src="{% static 'images/default-user.png' %}"
+                 class="rounded-circle border border-5 border-white shadow"
+                 width="170">
+            {% endif %}
+
+            <h2 class="text-white mt-3 fw-bold name">
+                {{ js.first_name }} {{ js.last_name }}
+            </h2>
+
+            <p class="text-light fs-5">
+                Job Seeker
+            </p>
+
+            {% if js.is_open_to_work %}
+            <span class="badge bg-success fs-6 px-4 py-2">
+                Open To Work
+            </span>
+            {% else %}
+            <span class="badge bg-danger fs-6 px-4 py-2">
+                Not Available
+            </span>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!--progress bar-->
+    <h6>Profile Completion</h6>
+
+<div class="progress mb-3">
+
+<div class="progress-bar progress-bar-striped progress-bar-animated"
+style="width:85%">
+
+85%
+
+</div>
+
+</div>
+    <!---end-->
+
+    <div class="row mt-4">
+
+        <!-- Left Side -->
+
+        <div class="col-lg-4">
+
+            <!-- Personal -->
+
+            <div class="card profile-card shadow border-0 mb-4 fade-card">
+
+                <div class="card-header profile-header p-5 text-center rounded-top bg-primary text-white">
+                    Personal Details
+                </div>
+
+                <div class="card-body">
+
+                    <p><b>Email :</b><br> <i class="bi bi-envelope-fill text-primary"></i> {{ js.email }}</p>
+
+                    <p><b>Phone :</b><br> <i class="bi bi-telephone-fill text-success"></i>  {{ js.contact_no }}</p>
+
+                    <p><b>Gender :</b><br>{{ js.gender }}</p>
+
+                    <p><b>Date of Birth :</b><br>{{ js.dob|date:"d M Y" }}</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Address -->
+
+            <div class="card shadow border-0 mb-4 fade-card">
+
+                <div class="card-header bg-success text-white">
+
+                    Address
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>{{ js.locality }}</p>
+
+                    <p> <i class="bi bi-geo-alt-fill text-danger"></i>  {{ js.city }}, {{ js.district }}</p>
+
+                    <p>{{ js.state }}</p>
+
+                    <p>{{ js.country }}</p>
+
+                    <p>{{ js.zip_code }}</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Documents -->
+
+            <div class="card shadow border-0 fade-card">
+
+                <div class="card-header bg-dark text-white">
+
+                    Documents
+
+                </div>
+
+                <div class="card-body">
+
+                    {% if js.resume %}
+                    <a href="{{ js.resume.url }}"
+                       class="btn btn-success w-100 mb-2"
+                       target="_blank">
+
+                        Resume
+
+                    </a>
+                    {% endif %}
+
+                    {% if js.cover_letter %}
+                    <a href="{{ js.cover_letter.url }}"
+                       class="btn btn-primary w-100"
+                       target="_blank">
+
+                        Cover Letter
+
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="col-lg-8">
+
+            <!-- Professional -->
+
+            <div class="card shadow border-0 mb-4 fade-card">
+
+                <div class="card-header bg-warning">
+
+                    Professional Details
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <h6>Expected Salary</h6>
+
+                            ₹ {{ js.expected_salary }}
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <h6>Current Salary</h6>
+
+                            ₹ {{ js.current_salary }}
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <h6>Notice Period</h6>
+
+                            {{ js.notice_period }} Days
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <p>
+
+                        <b> <i class="bi bi-linkedin text-info"></i> LinkedIn :</b>
+
+                        {{ js.linkedin_url }}
+
+                    </p>
+
+                    <p>
+
+                        <b> <i class="bi bi-github"></i>  Github :</b>
+
+                        {{ js.github_url }}
+
+                    </p>
+
+                    <p>
+
+                        <b>Portfolio :</b>
+
+                        {{ js.portfolio_url }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skills -->
+
+            <div class="card shadow border-0 mb-4 fade-card">
+
+                <div class="card-header bg-info text-white">
+
+                    Skills
+
+                </div>
+
+                <div class="card-body">
+
+                    {% for skill in js.skills.all %}
+
+                    <span class="badge skill-badge bg-primary fs-6 m-1 p-2">
+
+                        {{ skill.skill_name }}
+
+                    </span>
+
+                    {% empty %}
+
+                    <p>No Skills Added</p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- Education -->
+
+            <div class="card shadow border-0 mb-4">
+
+                <div class="card-header bg-secondary text-white">
+
+                    Education
+
+                </div>
+
+                <div class="card-body">
+
+                    {% for edu in js.educations.all %}
+
+                    <div class="border-start border-4 border-primary ps-3 mb-4">
+
+                        <h5>{{ edu.degree_name }}</h5>
+
+                        <h6>{{ edu.specialization }}</h6>
+
+                        <p>
+
+                            {{ edu.institute }}
+
+                            <br>
+
+                            {{ edu.university }}
+
+                        </p>
+
+                        <small>
+
+                            {{ edu.start_year }}
+
+                            -
+
+                            {{ edu.end_year }}
+
+                        </small>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p>No Education Added.</p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- Experience -->
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-danger text-white">
+
+                    Experience
+
+                </div>
+
+                <div class="card-body">
+
+                    {% for exp in js.experiences.all %}
+
+                    <div class="border-start border-4 border-success ps-3 mb-4">
+
+                        <h5>{{ exp.company_name }}</h5>
+
+                        <h6>{{ exp.designation }}</h6>
+
+                        <small>
+
+                            {{ exp.start_date }}
+
+                            -
+
+                            {{ exp.end_date }}
+
+                        </small>
+
+                        <p class="mt-2">
+
+                            {{ exp.description }}
+
+                        </p>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p>No Experience Added.</p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

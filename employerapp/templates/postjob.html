@@ -1,0 +1,117 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+
+{% block employer %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">📝 Post a New Job</h3>
+    </div>
+
+    {% if emp.company %}
+
+    <div class="card shadow border-0">
+
+        <div class="card-body p-4">
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="row g-4">
+
+                    <!-- Category -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Category</label>
+                        <select class="form-select" name="catid">
+                            <option selected disabled>Select Category</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat.id }}">{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Job Type</label>
+                        <select class="form-select" name="job_type">
+                            <option value="" disabled>Select Type</option>
+                            <option value="full_time">Full Time</option>
+                            <option value="part_time">Part Time</option>
+                            <option value="internship">Internship</option>
+                            <option value="contract">Contract</option>
+                        </select>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Job Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="e.g. Python Developer">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea name="description" class="form-control" rows="4"
+                            placeholder="Write job description..."></textarea>
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Salary (LPA)</label>
+                        <input type="number" name="salary" class="form-control" placeholder="e.g. 6">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Location</label>
+                        <input type="text" name="location" class="form-control" placeholder="e.g. Lucknow">
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Skills Required</label>
+                        <input type="text" name="skill_required" class="form-control"
+                            placeholder="python, django, react">
+                        <small class="text-muted">Comma separated skills</small>
+                    </div>
+
+                    <!-- Vacancy -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Vacancy</label>
+                        <input type="number" name="vacancy" class="form-control">
+                    </div>
+
+                    <!-- Deadline -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Deadline</label>
+                        <input type="date" name="deadline" class="form-control">
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                            🚀 Post Job
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning shadow-sm">
+        ⚠ Please update your company profile first to post jobs.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

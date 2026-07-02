@@ -1,0 +1,331 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+
+{% block employer %}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">View Applicants</h3>
+        <span class="badge bg-dark">
+            Total: {{ apps|length }}
+        </span>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Candidate</th>
+                            <th>Contact</th>
+                            <th>Skills</th>
+                            <th>Details</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for a in apps %}
+                        <tr>
+
+                            <td class="fw-bold">
+                                {{ forloop.counter }}
+                            </td>
+
+                            <!-- Candidate -->
+                            <td>
+                                <div class="fw-semibold">
+                                    {{ a.jobseeker.first_name }} {{ a.jobseeker.last_name }}
+                                </div>
+                                <small class="text-muted">
+                                    {{ a.jobseeker.email }}
+                                </small>
+                            </td>
+
+                            <!-- Contact -->
+                            <td>
+                                {{ a.jobseeker.contact_no }}
+                            </td>
+
+                            <!-- Skills -->
+                            <td>
+                                {% for skill in a.jobseeker.skills.all %}
+                                <span class="badge bg-primary me-1 mb-1">
+                                    {{ skill }}
+                                </span>
+                                {% empty %}
+                                <span class="text-muted">No Skills</span>
+                                {% endfor %}
+                            </td>
+
+                            <!-- View Button -->
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#js{{ a.id }}">
+                                    View
+                                </button>
+                            </td>
+
+                            <!-- Status -->
+                            <td>
+
+                                <form action="{% url 'change_status' appid=a.id %}" method="post">
+                                    {% csrf_token %}
+
+                                    <select name="status" class="form-select form-select-sm"
+                                        onchange="this.form.submit()">
+
+                                        <option value="pending" {% if a.status == 'pending' %}selected{% endif %}>
+                                            Pending
+                                        </option>
+
+                                        <option value="shortlisted" {% if a.status == 'shortlisted' %}selected{% endif %}>
+                                            Shortlisted
+                                        </option>
+
+                                        <option value="rejected" {% if a.status  == 'rejected' %}selected{% endif %}>
+                                            Rejected
+                                        </option>
+
+                                        <option value="selected" {% if a.status == 'selected' %}selected{% endif %}>
+                                            Selected
+                                        </option>
+
+                                    </select>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        <!-- Modal -->
+                        <!-- Applicant Modal -->
+                        <div class="modal fade" id="js{{a.id}}" tabindex="-1">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                <div class="modal-content border-0 shadow">
+
+                                    <!-- Header -->
+                                    <div class="modal-header bg-primary text-white py-4">
+                                        <div class="d-flex align-items-center">
+
+                                            {% if a.jobseeker.picture %}
+                                            <img src="{{a.jobseeker.picture.url}}"
+                                                class="rounded-circle border border-3 border-white me-3" width="90"
+                                                height="90" style="object-fit:cover;">
+                                            {% else %}
+                                            <img src="{% static 'images/user.png' %}"
+                                                class="rounded-circle border border-3 border-white me-3" width="90"
+                                                height="90">
+                                            {% endif %}
+
+                                            <div>
+                                                <h3 class="mb-1">
+                                                    {{a.jobseeker.first_name}} {{a.jobseeker.last_name}}
+                                                </h3>
+
+                                                <p class="mb-0">
+                                                    {{a.jobseeker.email}}
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body p-4">
+
+                                        <div class="row">
+
+                                            <!-- Left -->
+                                            <div class="col-md-4">
+
+                                                <div class="card shadow-sm border-0 mb-3">
+
+                                                    <div class="card-header bg-dark text-white">
+                                                        Personal Details
+                                                    </div>
+
+                                                    <div class="card-body">
+
+                                                        <p>
+                                                            📧
+                                                            <strong>Email</strong><br>
+                                                            {{a.jobseeker.email}}
+                                                        </p>
+
+                                                        <hr>
+
+                                                        <p>
+                                                            📱
+                                                            <strong>Mobile</strong><br>
+                                                            {{a.jobseeker.contact_no}}
+                                                        </p>
+
+                                                        <hr>
+
+                                                        <p>
+                                                            👤
+                                                            <strong>Gender</strong><br>
+                                                            {{a.jobseeker.gender}}
+                                                        </p>
+
+                                                        <hr>
+
+                                                        <p>
+                                                            🎂
+                                                            <strong>DOB</strong><br>
+                                                            {{a.jobseeker.dob}}
+                                                        </p>
+
+                                                        <hr>
+
+                                                        <p>
+                                                            📍
+                                                            <strong>Location</strong><br>
+                                                            {{a.jobseeker.location}}
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Right -->
+                                            <div class="col-md-8">
+
+                                                <!-- Qualification -->
+                                                <div class="card shadow-sm border-0 mb-3">
+
+                                                    <div class="card-header bg-info text-white">
+                                                        Education
+                                                    </div>
+
+                                                    <div class="card-body">
+
+                                                        {% for edu in a.jobseeker.educations.all %}
+                                                        <div class="mb-3 border-bottom pb-2">
+                                                            <h6>{{ edu.degree_name }}</h6>
+                                                            <p class="mb-1">
+                                                                {{ edu.specialization }}<br>
+                                                                {{ edu.institute }}
+                                                                {{edu.education}}
+                                                            </p>
+                                                            <small class="text-muted">
+                                                                {{ edu.start_year }} | {{ edu.end_year }}
+                                                            </small>
+                                                        </div>
+                                                        {% empty %}
+                                                        <p class="text-muted">No Education Added</p>
+                                                        {% endfor %}
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- Experience -->
+                                                <div class="card shadow-sm border-0 mb-3">
+
+                                                    <div class="card-header bg-success text-white">
+                                                        Experience
+                                                    </div>
+
+                                                    <div class="card-body">
+
+                                                        {% for exp in a.jobseeker.experiences.all %}
+                                                        <div class="mb-3 border-bottom pb-2">
+                                                            <h6>{{ exp.company }}</h6>
+                                                            <p>{{ exp.designation }}</p>
+                                                            <small>{{ exp.start_date }} - {{ exp.end_date }}</small>
+                                                        </div>
+                                                        {% empty %}
+                                                        <p class="text-muted">No Experience Added</p>
+                                                        {% endfor %}
+                                                    </div>
+
+                                                </div>
+
+                                                
+                                                <!-- Skills -->
+                                                <div class="card shadow-sm border-0">
+
+                                                    <div class="card-header bg-warning">
+                                                        Skills
+                                                    </div>
+
+                                                    <div class="card-body">
+
+                                                        {% for skill in a.jobseeker.skills.all %}
+
+                                                        <span class="badge bg-primary rounded-pill px-3 py-2 m-1">
+                                                            {{skill}}
+                                                        </span>
+
+                                                        {% empty %}
+
+                                                        <span class="text-muted">
+                                                            No Skills Added
+                                                        </span>
+
+                                                        {% endfor %}
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Footer -->
+                                    <div class="modal-footer justify-content-between">
+
+                                        {% if a.jobseeker.resume %}
+                                        <a href="{{a.jobseeker.resume.url}}" target="_blank" class="btn btn-success">
+
+                                            📄 Download Resume
+
+                                        </a>
+                                        {% endif %}
+
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+
+                                            Close
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                No Applications yet.
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

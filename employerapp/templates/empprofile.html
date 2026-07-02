@@ -1,0 +1,166 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+
+{% block employer %}
+
+<div class="container-fluid py-4">
+
+    <!-- TOP ACTION BAR -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'empedit' %}" class="btn btn-primary px-4">
+            ✏️ Edit Profile
+        </a>
+    </div>
+
+    <!-- PROFILE HEADER CARD -->
+    <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
+
+        <div class="bg-primary text-white p-4">
+            <div class="row align-items-center">
+
+                <div class="col-md-9">
+                    <h2 class="fw-bold mb-1">
+                        {{ emp.first_name }} {{ emp.last_name }}
+                    </h2>
+                    <p class="mb-0 opacity-75">
+                        {{ emp.designation }}
+                    </p>
+                    <small class="opacity-75">
+                        {{ emp.company.company_name }}
+                    </small>
+                </div>
+
+                <div class="col-md-3 text-center">
+
+                    {% if emp.picture %}
+                        <img src="{{ emp.picture.url }}"
+                             class="rounded-circle border border-3 border-white shadow"
+                             width="130" height="130"
+                             style="object-fit:cover;">
+                    {% else %}
+                        <img src="{% static 'images/default-user.png' %}"
+                             class="rounded-circle border border-3 border-white"
+                             width="130" height="130">
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body bg-light">
+
+            <div class="row g-4">
+
+                <!-- LEFT SIDE -->
+                <div class="col-lg-4">
+
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-header bg-dark text-white">
+                            <b>Personal Info</b>
+                        </div>
+
+                        <div class="card-body">
+
+                            <p>📞 <b>Phone:</b> {{ emp.contact_no }}</p>
+                            <p>📧 <b>Email:</b> {{ emp.email }}</p>
+                            <p>⚧ <b>Gender:</b> {{ emp.gender }}</p>
+                            <p>🎂 <b>DOB:</b> {{ emp.dob|date:"d M Y" }}</p>
+
+                            <hr>
+
+                            <p>🏢 <b>Company:</b> {{ emp.company.company_name }}</p>
+                            <p>🌍 <b>Location:</b> {{ emp.company.location }}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="col-lg-8">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-header bg-dark text-white">
+                            <b>Company Profile</b>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center mb-3">
+
+                                <div class="col-md-3 text-center">
+
+                                    {% if emp.company.logo %}
+                                        <img src="{{ emp.company.logo.url }}"
+                                             class="img-fluid rounded shadow"
+                                             style="max-height:100px;">
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <h5 class="fw-bold mb-1">
+                                        {{ emp.company.company_name }}
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+                                        {{ emp.company.industry }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <table class="table table-borderless">
+
+                                <tr>
+                                    <th>Website</th>
+                                    <td>
+                                        <a href="{{ emp.company.website }}" target="_blank">
+                                            {{ emp.company.website }}
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Contact</th>
+                                    <td>{{ emp.company.contact_no }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Established</th>
+                                    <td>{{ emp.company.established_at|date:"d M Y" }}</td>
+                                </tr>
+
+                            </table>
+
+                            <hr>
+
+                            <h6 class="fw-bold">About Company</h6>
+                            <p class="text-muted">
+                                {{ emp.company.details }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
