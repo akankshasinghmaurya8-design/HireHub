@@ -46,7 +46,7 @@ def Register(req):
                         """,
                         from_email="akankshasinghmaurya8@gmail.com",
                         recipient_list=[email],
-                        fail_silently=False,
+                        fail_silently=True,
                     )
                 return redirect('Register')
             elif usertype=='employer':
