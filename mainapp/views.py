@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+import os
 from.models import *
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -29,25 +30,27 @@ def Register(req):
                 js=Jobseeker(user=log,first_name=first_name,last_name=last_name,contact_no=contact_no,email=email)
                 log.save()
                 js.save()
-                messages.success(req,"Registeredv Successfully")
-                send_mail(
-                        subject="Welcome to HireHub",
-                        message=f"""
-                        Hello {first_name},
+                messages.success(req,"Registered Successfully")
+               
+                if os.environ.get("SEND_EMAILS", "True") == "True":
+                  send_mail(
+                  subject="Welcome to HireHub",
+                  message=f"""
+                  Hello {first_name},
 
-                        Welcome to HireHub!
+                  Welcome to HireHub!
 
-                        Your account has been successfully created.
+                  Your account has been successfully created.
 
-                        Thank you for registering with us.
+                  Thank you for registering with us.
 
-                        Regards,
-                        HireHub Team
-                        """,
-                        from_email="akankshasinghmaurya8@gmail.com",
-                        recipient_list=[email],
-                        fail_silently=True,
-                    )
+                  Regards,
+                  HireHub Team
+                  """,
+                  from_email="akankshasinghmaurya8@gmail.com",
+                  recipient_list=[email],
+                  fail_silently=True,
+                  )
                 return redirect('Register')
             elif usertype=='employer':
                 log=LoginInfo(usertype=usertype,username=email,password=pwd)
