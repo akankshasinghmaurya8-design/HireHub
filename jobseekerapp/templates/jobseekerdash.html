@@ -37,15 +37,14 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-4 p-3 text-center">
                 <h6>Total Applications</h6>
-                <h2 class="text-primary">{{ app.count }}</h2>
+                <h2 class="text-primary count" data-count="{{ app.count }}">0</h2>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-4 p-3 text-center">
                 <h6>Shortlisted</h6>
-                <h2 class="text-info">
-                    {{ shortlisted.count }}
+                <h2 class="text-info count" data-count="{{ shortlisted.count }}">0
                 </h2>
             </div>
         </div>
@@ -53,14 +52,14 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-4 p-3 text-center">
                 <h6>Rejected</h6>
-                <h2 class="text-danger">{{rejected.count}}</h2>
+                <h2 class="text-danger count" data-count="{{rejected.count}}">0</h2>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-4 p-3 text-center">
                 <h6>Selected</h6>
-                <h2 class="text-success">{{selected.count}}</h2>
+                <h2 class="text-success count" data-count="{{selected.count}}">0</h2>
             </div>
         </div>
 
@@ -134,9 +133,9 @@
         <div class="col-lg-8">
 
             <!-- RECENT APPLICATIONS -->
-            <div class="card shadow border-3 rounded-5 mb-4">
+            <div class="card shadow border-3 rounded-top-3 mb-4">
 
-                <div class="card-header bg-dark text-white">
+                <div class="card-header bg-dark rounded-top-3 text-white">
                     Recent Applications
                 </div>
 
@@ -200,9 +199,9 @@
             </div>
 
             <!-- EDUCATION -->
-            <div class="card shadow border-3 rounded-5 mb-4">
+            <div class="card shadow border-3 rounded-top-3 mb-4">
 
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-dark rounded-top-3 text-white">
                     Education
                 </div>
 
@@ -229,9 +228,9 @@
             </div>
 
             <!-- EXPERIENCE -->
-            <div class="card shadow border-3 rounded-5">
+            <div class="card shadow border-3 rounded-top-3">
 
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-dark rounded-top-3 text-white">
                     Experience
                 </div>
 

@@ -6,19 +6,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASM-HireHub</title>
-  <link rel="stylesheet" href="{% static 'css/style.css'  %}">
   <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}"><!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+  
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css'  %}">
 
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 p-0">
         <!---navbar start-->
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
           <div class="container-fluid">
@@ -45,10 +47,10 @@
 
               </ul>
               <form class="d-flex">
-                <button class="btn btn-outline-dark me-3"><a href="/login/"
-                    class="text-decoration-none text-dark fw-semibold">Login</a></button>
-                <button class="btn btn-dark me-5 "> <a href="/Register/"
-                    class=" text-decoration-none text-light fw-semibold">Register</a></button>
+                <button class="btn btn-pink  me-3"><a href="/login/"
+                    class="text-decoration-none text-light fw-semibold">Sign Up</a></button>
+                <!-- <button class="btn btn-pink me-5 "> <a href="/Register/"
+                    class=" text-decoration-none text-light fw-semibold">Register</a></button> -->
               </form>
             </div>
           </div>
@@ -57,26 +59,7 @@
       </div>
     </div>
     <!--navbarend-->
-    <!---banner start-->
-    <div class="row  align-items-center bg">
-
-      <div class="col-sm-5 mt-5 ms-5">
-        <h1 class="dream mb-2">Shape Your Future With HireHub</h1>
-        <p class="banp text-secondary">Search opportunities posted by HireHub and apply with your jobseeker profile.</p>
-
-        <p class="banp">
-          <button class="btn btn-primary"><a href="/Register/" class="text-decoration-none text-light">Create
-              Account</a></button>
-          <button class="btn btn-outline-light"><a href="/about/" class="text-decoration-none text-secondary">Learn
-              More</a></button>
-        </p>
-      </div>
-
-      <div class="col-sm-6 mt-5 mb-3 d-flex justify-content-end">
-        <img src="{% static 'img/girl.png' %}" class="img-fluid banner-img" style="max-height:400px;">
-      </div>
-      <!---------banner end-->>
-    </div>
+   
 
     {% block body %}
     {% endblock %}
@@ -87,7 +70,7 @@
 
     <!--FOOTER start-->
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-dark text-white">
+    <footer class="text-center text-lg-start bg-dark text-white foot">
       <!-- Section: Social media -->
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <!-- Left -->
@@ -98,22 +81,22 @@
 
         <!-- Right -->
         <div>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset  foat">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset foat">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset foat">
             <i class="fab fa-google"></i>
           </a>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset foat">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset foat">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="" class="me-4 text-reset">
+          <a href="" class="me-4 text-reset foat">
             <i class="fab fa-github"></i>
           </a>
         </div>
@@ -146,16 +129,16 @@
                 JOBSEEKERS
               </h6>
               <p>
-                <a href="#!" class="text-reset">Browse Jobs</a>
+                <a href="#!" class="text-reset foat">Browse Jobs</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Saved jobs</a>
+                <a href="#!" class="text-reset foat">Saved jobs</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Carrer Tips</a>
+                <a href="#!" class="text-reset foat">Carrer Tips</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Laravel</a>
+                <a href="#!" class="text-reset foat">Laravel</a>
               </p>
             </div>
             <!-- Grid column -->
@@ -167,16 +150,16 @@
                 Useful links
               </h6>
               <p>
-                <a href="#!" class="text-reset">Open Jobs</a>
+                <a href="#!" class="text-reset foat">Open Jobs</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Applications</a>
+                <a href="#!" class="text-reset foat">Applications</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Support</a>
+                <a href="#!" class="text-reset foat">Support</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Help</a>
+                <a href="#!" class="text-reset foat">Help</a>
               </p>
             </div>
             <!-- Grid column -->
@@ -203,8 +186,8 @@
       <!-- Copyright -->
        <hr class="bg-light">
       <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">HireHub@Design & Developed by ASM</a>
+        Copyright @ 2026:
+        <a class="text-reset fw-bold foat" href="https://mdbootstrap.com/">HireHub Designed & Developed by ASM</a>
       </div>
       <!-- Copyright -->
     </footer>

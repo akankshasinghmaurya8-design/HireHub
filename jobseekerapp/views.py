@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from mainapp.models import*
 from django.utils import timezone
-
+from django.core.mail import send_mail
 # Create your views here.
 def jobseekerdash(req):
     if 'jsid' not in req.session:

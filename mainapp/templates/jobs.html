@@ -2,79 +2,78 @@
 {% load static %}
 
 {% block body %}
+<div class="container-fluid job" style="padding-left: 0px !important;padding-right: 0px !important;">
 
-<div class="container py-4">
-
-    <!-- Header -->
+    <!-- TITLE -->
     <div class="text-center mb-4">
         <h2 class="fw-bold">Available Jobs</h2>
-        <p class="text-muted">All <b>{{ jobs.count }}</b> jobs found</p>
+        <p class="text-white">All <b>{{ jobs.count }}</b> jobs found</p>
     </div>
 
-    <div class="row g-4">
+    <div class="container py-4">
 
-        {% for job in jobs %}
+        <!-- Header -->
+        
+        <div class="row g-4">
 
-        <!-- JOB CARD -->
-        <div class="col-md-10 mx-auto">
-            <div class="card border-0 shadow-sm rounded-4 p-3 hover-shadow">
+            {% for job in jobs %}
 
-                <div class="row align-items-center">
+            <!-- JOB CARD -->
+            <div class="col-md-10 mx-auto mb-3">
+                <div class="card border-0 shadow-sm rounded-4 p-3 hover-shadow mb-3">
 
-                    <!-- Company Logo -->
-                    <div class="col-md-2 text-center">
-                        {% if job.company.logo %}
-                            <img src="{{ job.company.logo.url }}"
-                                 class="rounded-circle border"
-                                 width="70" height="70"
-                                 style="object-fit:cover;">
-                        {% else %}
-                            <img src="{% static 'images/company.png' %}"
-                                 class="rounded-circle border"
-                                 width="70" height="70">
-                        {% endif %}
-                    </div>
+                    <div class="row align-items-center">
 
-                    <!-- Job Info -->
-                    <div class="col-md-4">
-                        <span class="badge bg-primary mb-1">
-                            {{ job.get_job_type_display }}
-                        </span>
+                        <!-- Company Logo -->
+                        <div class="col-md-2 text-center">
+                            {% if job.company.logo %}
+                            <img src="{{ job.company.logo.url }}" class="rounded-circle border" width="70" height="70"
+                                style="object-fit:cover;">
+                            {% else %}
+                            <img src="{% static 'images/company.png' %}" class="rounded-circle border" width="70"
+                                height="70">
+                            {% endif %}
+                        </div>
 
-                        <h5 class="mb-1">{{ job.title }}</h5>
-                        <p class="text-muted mb-0">
-                            {{ job.company.company_name }}
-                        </p>
-                    </div>
+                        <!-- Job Info -->
+                        <div class="col-md-4">
+                            <span class="badge pink mb-1">
+                                {{ job.get_job_type_display }}
+                            </span>
 
-                    <!-- Location + Salary -->
-                    <div class="col-md-3">
-                        <p class="mb-1">
-                            📍 {{ job.location }}
-                        </p>
-                        <p class="fw-bold text-success mb-0">
-                            ₹{{ job.salary }} / year
-                        </p>
-                    </div>
+                            <h5 class="mb-1">{{ job.title }}</h5>
+                            <p class="text-muted mb-0">
+                                {{ job.company.company_name }}
+                            </p>
+                        </div>
 
-                    <!-- Buttons -->
-                    <div class="col-md-3 text-end">
+                        <!-- Location + Salary -->
+                        <div class="col-md-3">
+                            <p class="mb-1">
+                                📍 {{ job.location }}
+                            </p>
+                            <p class="fw-bold text-success mb-0">
+                                ₹{{ job.salary }} / year
+                            </p>
+                        </div>
 
-                        <!-- VIEW BUTTON -->
-                        <button class="btn btn-outline-primary btn-sm px-3"
-                                data-bs-toggle="modal"
+                        <!-- Buttons -->
+                        <div class="col-md-3 text-end">
+
+                            <!-- VIEW BUTTON -->
+                            <button class="btn btn-outline-pink btn-sm px-3" data-bs-toggle="modal"
                                 data-bs-target="#job{{ job.id }}">
-                            View
-                        </button>
+                                View
+                            </button>
 
-                        <!-- APPLY BUTTON -->
-                        <a href="{% url 'apply_job' job.id %}"
-                           class="btn btn-success btn-sm px-3">
-                            Apply
-                        </a>
+                            <!-- APPLY BUTTON -->
+                            <a href="{% url 'apply_job' job.id %}" class="btn btn-pink btn-sm px-3">
+                                Apply
+                            </a>
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -86,26 +85,23 @@
                 <div class="modal-content border-0 rounded-4 shadow-lg">
 
                     <!-- HEADER -->
-                    <div class="modal-header bg-primary text-white">
+                    <div class="modal-header bc text-white">
 
                         <div class="d-flex align-items-center gap-3">
 
                             {% if job.company.logo %}
-                                <img src="{{ job.company.logo.url }}"
-                                     class="rounded-circle border border-3"
-                                     width="70" height="70"
-                                     style="object-fit:cover;">
+                            <img src="{{ job.company.logo.url }}" class="rounded-circle border border-3" width="70"
+                                height="70" style="object-fit:cover;">
                             {% endif %}
 
                             <div>
-                                <h5 class="mb-0">{{ job.company.company_name }}</h5>
+                                <h5 class="mb-0 text-dark">{{ job.company.company_name }}</h5>
                                 <small>{{ job.company.industry }}</small>
                             </div>
 
                         </div>
 
-                        <button class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"></button>
+                        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
 
                     <!-- BODY -->
@@ -130,11 +126,11 @@
 
                                         <p><b>Website:</b><br>
                                             {% if job.company.website %}
-                                                <a href="{{ job.company.website }}" target="_blank">
-                                                    Visit
-                                                </a>
+                                            <a href="{{ job.company.website }}" target="_blank">
+                                                Visit
+                                            </a>
                                             {% else %}
-                                                N/A
+                                            N/A
                                             {% endif %}
                                         </p>
 
@@ -151,15 +147,15 @@
 
                                 <!-- JOB INFO -->
                                 <div class="card border-0 shadow-sm mb-3">
-                                    <div class="card-header bg-info text-white">
+                                    <div class="card-header bc text-dark">
                                         Job Details
                                     </div>
 
                                     <div class="card-body">
 
-                                        <h4 class="text-primary">{{ job.title }}</h4>
+                                        <h4 class="text-secondary">{{ job.title }}</h4>
 
-                                        <span class="badge bg-success">
+                                        <span class="badge pink">
                                             {{ job.get_job_type_display }}
                                         </span>
 
@@ -189,20 +185,20 @@
 
                                 <!-- SKILLS -->
                                 <div class="card border-0 shadow-sm mb-3">
-                                    <div class="card-header bg-warning">
+                                    <div class="card-header bc text-dark">
                                         Required Skills
                                     </div>
 
                                     <div class="card-body">
 
                                         {% for skill in job.skills_required.all %}
-                                            <span class="badge bg-primary me-1 mb-1">
-                                                {{ skill.skill_name }}
-                                            </span>
+                                        <span class="badge pink me-1 mb-1">
+                                            {{ skill.skill_name }}
+                                        </span>
                                         {% empty %}
-                                            <span class="text-muted">
-                                                No skills required
-                                            </span>
+                                        <span class="text-muted">
+                                            No skills required
+                                        </span>
                                         {% endfor %}
 
                                     </div>
@@ -210,7 +206,7 @@
 
                                 <!-- ABOUT COMPANY -->
                                 <div class="card border-0 shadow-sm">
-                                    <div class="card-header bg-secondary text-white">
+                                    <div class="card-header bc text-dark">
                                         About Company
                                     </div>
 
@@ -227,13 +223,11 @@
 
                     <!-- FOOTER -->
                     <div class="modal-footer">
-                        <button class="btn btn-secondary"
-                                data-bs-dismiss="modal">
+                        <button class="btn btn-pink" data-bs-dismiss="modal">
                             Close
                         </button>
 
-                        <a href="{% url 'apply_job' job.id %}"
-                           class="btn btn-success">
+                        <a href="{% url 'apply_job' job.id %}" class="btn btn-pink">
                             Apply Now
                         </a>
                     </div>

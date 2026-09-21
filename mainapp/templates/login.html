@@ -2,69 +2,64 @@
 {% load static %}
 
 {% block body %}
+<div class="container-fluid sign p-0">
+  <div class="container py-5">
 
-<div class="container py-5">
+    <!-- TITLE -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Login to HireHub</h2>
+      <p class="text-white">Access your account and explore jobs</p>
+    </div>
 
-  <!-- TITLE -->
-  <div class="text-center mb-4">
-    <h2 class="fw-bold">Login to HireHub</h2>
-    <p class="text-muted">Access your account and explore jobs</p>
-  </div>
+    <div class="row justify-content-center ">
 
-  <div class="row justify-content-center">
+      <div class="col-md-5">
 
-    <div class="col-md-5">
+        <div class="card border-0 shadow-lg p-4 rounded-4">
 
-      <div class="card border-0 shadow-lg p-4 rounded-4">
-
-        <!-- MESSAGES -->
-        {% if messages %}
+          <!-- MESSAGES -->
+          {% if messages %}
           {% for m in messages %}
-            <div class="alert alert-warning alert-dismissible fade show">
-              {{ m }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
+          <div class="alert alert-warning alert-dismissible fade show">
+            {{ m }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
           {% endfor %}
-        {% endif %}
+          {% endif %}
 
-        <!-- FORM -->
-        <form method="POST">
-          {% csrf_token %}
+          <!-- FORM -->
+          <form method="POST">
+            {% csrf_token %}
 
-          <!-- USERNAME -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Username</label>
-            <input type="text"
-                   name="username"
-                   class="form-control form-control-lg"
-                   placeholder="Enter username"
-                   required>
+            <!-- USERNAME -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Username</label>
+              <input type="text" name="username" class="form-control form-control-lg" placeholder="Enter username"
+                required>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Password</label>
+              <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password"
+                required>
+            </div>
+
+            <!-- BUTTON -->
+            <button type="submit" class="btn btn-dark w-100 btn-lg">
+              Login
+            </button>
+
+          </form>
+
+          <!-- EXTRA LINKS -->
+          <div class="text-center mt-3">
+            <small class="text-muted">
+              Don't have an account?
+              <a href="{% url 'Register' %}">Register here</a>
+            </small>
           </div>
 
-          <!-- PASSWORD -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Password</label>
-            <input type="password"
-                   name="password"
-                   class="form-control form-control-lg"
-                   placeholder="Enter password"
-                   required>
-          </div>
-
-          <!-- BUTTON -->
-          <button type="submit"
-                  class="btn btn-primary w-100 btn-lg">
-            Login
-          </button>
-
-        </form>
-
-        <!-- EXTRA LINKS -->
-        <div class="text-center mt-3">
-          <small class="text-muted">
-            Don't have an account?
-            <a href="{% url 'Register' %}">Register here</a>
-          </small>
         </div>
 
       </div>
@@ -72,7 +67,6 @@
     </div>
 
   </div>
-
 </div>
 
 {% endblock %}

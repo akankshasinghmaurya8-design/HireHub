@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from.models import *
 from django.contrib import messages
-
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(req):
@@ -30,6 +30,24 @@ def Register(req):
                 log.save()
                 js.save()
                 messages.success(req,"Registeredv Successfully")
+                send_mail(
+                        subject="Welcome to HireHub",
+                        message=f"""
+                        Hello {first_name},
+
+                        Welcome to HireHub!
+
+                        Your account has been successfully created.
+
+                        Thank you for registering with us.
+
+                        Regards,
+                        HireHub Team
+                        """,
+                        from_email="akankshasinghmaurya8@gmail.com",
+                        recipient_list=[email],
+                        fail_silently=False,
+                    )
                 return redirect('Register')
             elif usertype=='employer':
                 log=LoginInfo(usertype=usertype,username=email,password=pwd)

@@ -49,8 +49,8 @@
 
                     <h6 class="text-muted">Total Jobs</h6>
 
-                    <h2 class="text-primary fw-bold">
-                        {{ total_jobs }}
+                    <h2 class="text-primary fw-bold count" data-count="{{total_jobs}}">
+                        0
                     </h2>
 
                 </div>
@@ -67,8 +67,8 @@
 
                     <h6 class="text-muted">Active Jobs</h6>
 
-                    <h2 class="text-success fw-bold">
-                        {{ active_jobs }}
+                    <h2 class="text-success fw-bold count" data-count="{{active_jobs}}">
+                        0
                     </h2>
 
                 </div>
@@ -85,8 +85,8 @@
 
                     <h6 class="text-muted">Applications</h6>
 
-                    <h2 class="text-warning fw-bold">
-                        {{ total_applications }}
+                    <h2 class="text-warning fw-bold count" data-count="{{total_applications}}">
+                        0
                     </h2>
 
                 </div>
@@ -103,8 +103,8 @@
 
                     <h6 class="text-muted">Shortlisted</h6>
 
-                    <h2 class="text-info fw-bold">
-                        {{ shortlisted }}
+                    <h2 class="text-info fw-bold count" data-count="{{Shortlisted}}">
+                        
                     </h2>
 
                 </div>
@@ -265,7 +265,7 @@
             <!-- Recent Applications -->
             <div class="card shadow border-0 rounded-5 mb-4">
 
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-dark text-white">
                     Recent Applications
                 </div>
 
@@ -334,7 +334,7 @@
             <!-- Quick Actions -->
             <div class="card shadow border-0 rounded-5">
 
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-dark text-white">
                     Quick Actions
                 </div>
 
